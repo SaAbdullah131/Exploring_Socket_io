@@ -7,13 +7,19 @@ const http = require('http');
 const expressServer = http.createServer(app);
 // express server created
 
+
 // socket io require socket io modules import
 const {Server}=require('socket.io'); // socket io er Server property import Server property is a class
 
 const io = new Server(expressServer);
 
-io.on('connection',()=>{
 
+io.on('connection',(socket)=>{
+    console.log('New user Connected');// while user connected
+
+    socket.on('disconnect',()=>{
+        console.log('User Disconnected'); // while user disconnected when close 
+    })
 })
 
 //loaded index html 
